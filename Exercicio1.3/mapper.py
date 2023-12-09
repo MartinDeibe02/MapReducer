@@ -1,21 +1,15 @@
 #!/usr/bin/python
 
-import sys
+# Format of each line is:
+# date\ttime\tstore name\titem description\tcost\tmethod of payment
+#
+# We want elements 2 (store name) and 4 (cost)
+# We need to write them out to standard output, separated by a tab
 
-ventas_pago = {}
+import sys
 
 for line in sys.stdin:
     data = line.strip().split("\t")
     date, time, store, item, cost, payment = data
-
-    cost = float(cost)
-
-    if payment in ventas_pago:
-        if cost > ventas_pago[payment]:
-            ventas_pago[payment] = cost
-    else:
-        ventas_pago[payment] = cost
-
-for payment, max_pago in ventas_pago.items():
-    print(payment + "\t" + str(max_pago))
+    print(payment+"\t"+cost) 
 
