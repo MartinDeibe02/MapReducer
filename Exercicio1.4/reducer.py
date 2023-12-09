@@ -2,7 +2,7 @@
 
 import sys
 
-salesTotal = 0
+maxSales = 0
 oldKey = None
 
 # Loop around the data
@@ -23,14 +23,15 @@ for line in sys.stdin:
     # Escribe un par key:value ante un cambio na key
     # Reinicia o total
     if oldKey and oldKey != thisKey:
-        print(oldKey+"\t"+str(salesTotal))
+        print(str(maxSales))
         oldKey = thisKey;
-        salesTotal = 0
+        maxSales = 0
 
     oldKey = thisKey
-    salesTotal += float(thisSale)
+    if maxSales < float(thisSale):
+    	maxSales += float(thisSale)
 
 # Escribe o ultimo par, unha vez rematado o bucle
 if oldKey != None:
-    print(oldKey+"\t"+str(salesTotal))
+    print("Venta mas alta"+"\t"+str(maxSales))
 
